@@ -1,0 +1,10 @@
+%h3 Enter Contest
+
+= semantic_form_for [@ladder, @contest] do |f|
+  = f.semantic_fields_for :contest_scores do |s|
+    = s.input :user_id, :as => :hidden
+    = s.input :score, :label => "#{s.object.user.name}'s Score"
+  = f.buttons do
+    = f.commit_button
+    %li.cancel.button
+      = link_to 'Cancel', ladder_path(@ladder)

@@ -1,0 +1,10 @@
+%h3 New Ladder
+
+= semantic_form_for @ladder do |f|
+  = f.inputs do
+    = f.input :name
+  = f.buttons  do
+    = f.commit_button
+    %li.cancel.button
+      = link_to 'Cancel', ladders_path
+

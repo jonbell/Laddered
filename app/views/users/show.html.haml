@@ -1,0 +1,49 @@
+%h3= @user.name
+
+%dl
+  %dt Rank
+  %dd= @user.rank
+
+  %dt Total Wins
+  %dd= @user.total_wins
+
+  %dt Total Losses
+  %dd= @user.total_losses
+
+  %dt Total Ties
+  %dd= @user.total_ties
+
+  %dt Win Pct
+  %dd= (@user.win_pct * 100).to_i.to_s + "%"
+
+  %dt Current Streak
+  %dd= @user.current_streak_short
+
+  %dt Longest Win Streak
+  %dd= @user.longest_winning_streak
+
+  %dt Longest Losing Streak
+  %dd= @user.longest_losing_streak
+
+  %dt Wins as leader
+  %dd= @user.wins_on_top
+
+%h3 Last 10 results
+
+- if @last_10_results.empty?
+  %p Has not compteted yet
+- else
+  %table
+    %thead
+      %tr
+        %th Against
+        %th Result
+        %th Score
+        %th Date
+    %tbody
+      - @last_10_results.each do |score|
+        %tr.result{:class => score.result}
+          %td= score.competitor.user.name
+          %td= score.result
+          %td= score.full_score
+          %td= score.contest.created_at.strftime("%m/%d/%y %I:%m:%S %p")

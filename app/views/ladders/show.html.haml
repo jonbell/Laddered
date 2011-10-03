@@ -1,0 +1,13 @@
+%h3= @ladder.name
+
+- if @ladder.users.empty?
+  %p No users added yet
+- else
+  %ol
+    - @ladder.users.each do |user|
+      %li
+      = link_to user.name, ladder_user_path(@ladder, user)
+      - if user.next_user
+        = link_to "Add Contest Result", new_ladder_contest_path(@ladder, :user_id => [user.id, user.next_user.id])
+
+= link_to "Add a user", new_ladder_user_path(@ladder)

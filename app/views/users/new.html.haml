@@ -1,0 +1,10 @@
+%h3 New User
+
+= semantic_form_for [@ladder, @user] do |f|
+  = f.inputs do
+    = f.input :name
+    = f.input :rank
+  = f.buttons do
+    = f.commit_button
+    %li.cancel.button
+      = link_to "Cancel", ladder_path(@ladder)

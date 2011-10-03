@@ -1,0 +1,17 @@
+%h3 Ladders
+
+= link_to "New Ladder", new_ladder_path
+
+- if @ladders.empty?
+  %p No ladders defined
+- else
+  %table
+    %thead
+      %tr
+        %th Name
+        %th Actions
+    %tbody
+      - @ladders.each do |ladder|
+        %tr
+          %td= link_to ladder.name, ladder_path(ladder)
+          %td= link_to 'Delete', ladder_path(ladder), :method => :delete, :confirm => "Are you sure you want to delete this ladder?"
