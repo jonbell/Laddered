@@ -23,7 +23,8 @@ class Ladder < ActiveRecord::Base
       contest_score1 = ContestScore.new(
         :contest => contest,
         :user => user1,
-        :score => user1_score
+        :score => user1_score,
+        :pre_contest_rank => user1.rank
       )
       contest_score1.calc_result(user2_score)
       contest.contest_scores << contest_score1
@@ -31,7 +32,8 @@ class Ladder < ActiveRecord::Base
       contest_score2 = ContestScore.new(
         :contest => contest,
         :user => user2,
-        :score => user2_score
+        :score => user2_score,
+        :pre_contest_rank => user2.rank
       )
       contest_score2.calc_result(user1_score)
       contest.contest_scores << contest_score2
@@ -41,6 +43,8 @@ class Ladder < ActiveRecord::Base
       elsif user2.rank < user1.rank && user2_score < user1_score
         move_user(user1, user2.rank)
       end
+      contest_score1.update_attributes(:post_contest_rank => user1.reload.rank)
+      contest_score2.update_attributes(:post_contest_rank => user2.reload.rank)
       user1.update_stats!(contest_score1)
       user2.update_stats!(contest_score2)
     end

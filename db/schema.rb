@@ -11,13 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111003021518) do
+ActiveRecord::Schema.define(:version => 20111003151756) do
 
   create_table "contest_scores", :force => true do |t|
-    t.integer "contest_id", :null => false
-    t.integer "user_id",    :null => false
-    t.integer "score",      :null => false
-    t.string  "result",     :null => false
+    t.integer "contest_id",        :null => false
+    t.integer "user_id",           :null => false
+    t.integer "score",             :null => false
+    t.string  "result",            :null => false
+    t.integer "pre_contest_rank"
+    t.integer "post_contest_rank"
   end
 
   add_index "contest_scores", ["contest_id"], :name => "index_contest_scores_on_contest_id"
