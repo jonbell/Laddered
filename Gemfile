@@ -35,6 +35,7 @@ gem 'jquery-rails'
 gem 'inherited_resources'
 gem 'haml'
 gem 'formtastic'
+gem 'thin'
 
 group :test do
   # Pretty printed test output
